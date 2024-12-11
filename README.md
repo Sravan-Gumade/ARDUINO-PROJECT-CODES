@@ -58,7 +58,7 @@ Each folder contains:
 
 1. Clone the repository to your local machine:
    ```bash
-   git clone https://github.com/your-username/arduino-practice-codes.git
+   git clone https://github.com/Sravan-Gumade/ARDUINO-PROJECT-CODES.git
    ```
 2. Open the desired `.ino` file in the Arduino IDE.
 3. Follow the instructions in the comments for wiring and testing.
