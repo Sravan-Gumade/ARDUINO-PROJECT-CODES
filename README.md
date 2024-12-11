@@ -90,7 +90,9 @@ To contribute, fork the repository and submit a pull request.
 
 If you have any questions, feedback, or suggestions, feel free to reach out:
 - **Author**: Sravan
-- **Email**: your-email@example.com
+- **Education**: B.Tech in Agricultural Engineering
+- **Email**: gumadesravan2002@gmail.com
+- 
 
 ---
 
