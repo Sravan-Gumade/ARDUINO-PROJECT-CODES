@@ -1,1 +1,67 @@
-This is my first repository
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arduino Test & Practice Codes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #007acc;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        section {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+        }
+        h1, h2 {
+            color: #333;
+        }
+        ul {
+            padding-left: 20px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Arduino Repository</h1>
+    </header>
+    <section>
+        <h2>Welcome to My Arduino Test & Practice Codes Repository</h2>
+        <p>
+            This repository is a collection of all my Arduino test and practice codes. 
+            It serves as a learning space for exploring various Arduino features and concepts. 
+        </p>
+        <h3>Contents of the Repository</h3>
+        <ul>
+            <li>Basic LED blink programs</li>
+            <li>Sensor integration tests</li>
+            <li>Motor and servo control experiments</li>
+            <li>Communication protocols (I2C, SPI, UART)</li>
+            <li>Advanced projects and mini-experiments</li>
+        </ul>
+        <p>
+            Stay tuned for frequent updates as I continue to explore and expand my knowledge of Arduino programming!
+        </p>
+    </section>
+    <footer>
+        <p>Created by Sravan | © 2024</p>
+    </footer>
+</body>
+</html>
