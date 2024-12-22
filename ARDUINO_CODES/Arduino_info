@@ -1,0 +1,806 @@
+ARDUINO & ESP8266
+PROGRAMMING
+
+
+
+
+
+
+
+
+
+INDEX
+S. No
+Title
+
+1
+PROGRAMMING INTRODUCTION 
+
+2
+OPERATORS
+
+3
+Conditions
+
+4
+Loops
+
+5
+Functions
+
+6
+Array and pointer
+
+7
+About pins
+
+8
+Serial Monitor
+
+9
+BLUETOOTH
+
+
+Display
+
+10
+SD card
+
+11
+Keypad
+
+12
+IR REMOTE CONTROL
+
+13
+Moisture sensor
+
+14
+Wifi
+
+
+
+
+PROGRAMMING INTRODUCTION 
+Android app for Arduino programming  Arduinodroid App
+All functions are written in camel.
+Data types:
+These are the data types used in Arduino.
+Data type
+Example
+Size, bytes
+Use
+
+integer 
+int VARIABLE_NAME
+2 or 4
+Defining integers numbers
+
+Unsigned int
+unint8_t
+2 or 4
+Not negative numbers and uses 8 bit size, it is changable
+
+Float
+float VARIABLE_NAME
+4
+Used for defining decimal numbers
+
+Double
+double VARIABLE_NAME
+8
+Used for large decimal number
+
+Long double
+long double
+10
+Large size number 
+
+character
+char VARIABLE_NAME
+1
+Defining single alphabetic letter
+
+Boolean
+bool
+True or false
+
+
+
+
+
+Data Conversion in Arduino Programming
+In Arduino programming, data conversion often involves changing data from one type to another, like converting an int to a float, or a String to an int. These conversions can be useful for serial communication, sensor data processing, and mathematical calculations. Here are some common methods and functions used for data conversion in Arduino:
+
+1. Basic Type Casting
+Description: Type casting allows you to change the data type of a variable explicitly in Arduino programming, such as converting an int to a float.
+Syntax:
+(float)variable
+(int)variable
+Parameters:
+- variable: The variable to convert.
+Example:
+int a = 5;
+float b = (float)a; // Converts int to float
+2. Using Arduino Conversion Functions
+Description: Arduino provides built-in functions like int(), float(), and String() for straightforward type conversion between basic types.
+Syntax:
+int(variable)
+float(variable)
+String(variable)
+Parameters:
+- variable: The variable to convert.
+Example:
+float c = 3.14;
+int d = int(c);  // d will be 3
+3. Converting Strings to Numbers
+Description: Strings can be converted to numbers in Arduino using toInt() and toFloat() methods, useful when processing serial input or handling text-based sensor data.
+Syntax:
+String.toInt()
+String.toFloat()
+Example:
+String str = "123";
+int num = str.toInt();     // Converts to integer (num = 123)
+float fnum = str.toFloat(); // Converts to float (fnum = 123.0)
+4. Converting Numbers to Strings
+Description: Convert numerical values to strings with the String() function. Useful for displaying numeric data on screens or sending it over serial communication as text.
+Syntax:
+String(variable)
+Example:
+int num = 123;
+String str = String(num);  // Converts int to String
+5. Binary, Hexadecimal, and Octal Conversions
+Description: Use binary (BIN), hexadecimal (HEX), or octal (OCT) conversions for representing numbers in different bases, helpful for debugging, bit manipulation, and low-level programming.
+Syntax:
+Serial.println(variable, BASE);
+Example:
+int num = 255;
+Serial.println(num, BIN);  // Output: 11111111
+Serial.println(num, HEX);  // Output: FF
+Serial.println(num, OCT);  // Output: 377
+6. Custom Parsing Functions
+Description: For customized data parsing, you can manipulate individual ASCII characters, such as converting a character representing a digit to its integer value.
+Syntax:
+int num = char - '0';
+Example:
+char c = '5';
+int num = c - '0';  // ASCII conversion from char '5' to int 5
+Example: Converting Analog Input to Voltage
+Description: This example converts an analog reading (range 0-1023) to a voltage (0-5V), useful for sensors that output analog signals.
+Syntax:
+int analogValue = analogRead(pin);
+float voltage = analogValue * (referenceVoltage / maxAnalogValue);
+Parameters:
+- pin: The analog pin to read from, e.g., A0.
+- referenceVoltage: The maximum voltage the analog input can measure, typically 5V for Arduino.
+- maxAnalogValue: The highest reading for analog input, typically 1023.
+Example:
+int analogValue = analogRead(A0);
+float voltage = analogValue * (5.0 / 1023.0);
+Serial.println(voltage);
+Summary Table of Common Conversions
+From
+To
+Method
+Example
+
+String
+int
+toInt()
+str.toInt()
+
+String
+float
+toFloat()
+str.toFloat()
+
+int
+String
+String(num)
+String(num)
+
+float
+String
+String(num, precision)
+String(fnum, 2)
+
+Binary
+Decimal
+strtol(value, NULL, 2)
+strtol("1010", NULL, 2) = 10
+
+Hexadecimal
+Decimal
+strtol(value, NULL, 16)
+strtol("A", NULL, 16) = 10
+
+ASCII char
+Integer
+char - '0'
+'5' - '0' = 5
+
+
+
+
+
+
+
+
+
+
+
+
+
+OPERATORS:
+In Arduino (C++), operators are symbols that perform operations on variables and values. They are essential in controlling the logic, flow, and calculations within your code. Here's a breakdown of the most common operators:
+1. Arithmetic Operators
+Used for basic mathematical calculations.
+Operator
+Description
+Example
+
++
+Addition
+a + b
+
+-
+Subtraction
+a - b
+
+*
+Multiplication
+a * b
+
+/
+Division
+a / b
+
+%
+Modulus (remainder)
+a % b
+
+
+Example:
+int a = 10;
+int b = 3;
+int sum = a + b;      // 13
+int remainder = a % b; // 1
+2. Assignment Operators
+Used to assign values to variables, often with an operation included.
+Operator
+Description
+Example
+Equivalent To
+
+=
+Assignment
+a = b
+
+
++=
+Add and assign
+a += b
+a = a + b
+
+-=
+Subtract and assign
+a -= b
+a = a - b
+
+*=
+Multiply and assign
+a *= b
+a = a * b
+
+/=
+Divide and assign
+a /= b
+a = a / b
+
+%=
+Modulus and assign
+a %= b
+a = a % b
+
+
+Example:
+int x = 5;
+x += 3; // x is now 8
+x *= 2; // x is now 16
+3. Comparison Operators
+Operator
+Description
+Example
+
+==
+Equal to
+a == b
+
+!=
+Not equal to
+a != b
+
+>
+Greater than
+a > b
+
+<
+Less than
+a < b
+
+>=
+Greater than or equal to
+a >= b
+
+<=
+Less than or equal to
+a <= b
+
+
+Used to compare two values, returning true or false.
+Example:
+int temp = 25;
+if (temp >= 30) {
+    Serial.println("It's hot");
+} else {
+    Serial.println("Temperature is normal");
+}
+4. Logical Operators
+Used to perform logical operations, often in condition statements.
+Operator
+Description
+Example
+
+&&
+Logical AND
+(a > 5) && (b < 10)
+
+||
+Logical OR
+(a > 5) || (b < 10)
+
+!
+Logical NOT
+!(a > 5)
+
+
+Example:
+int sensorValue = analogRead(A0);
+if (sensorValue > 200 && sensorValue < 800) {
+    Serial.println("Moderate light detected.");
+}
+5. Increment and Decrement Operators
+Used to increase or decrease the value of a variable by 1.
+Operator
+Description
+Example
+
+++
+Increment by 1
+a++ or ++a
+
+--
+Decrement by 1
+a-- or --a
+
+
+Example:
+int count = 0;
+count++;  // count is now 1
+++count;  // count is now 2
+Difference between Prefix and Postfix:
+a++: Returns a, then increments.
+++a: Increments a, then returns.
+6. Bitwise Operators
+Used to perform operations at the bit level. Useful in low-level programming.
+Operator
+Description
+Example
+
+&
+Bitwise AND
+a & b
+
+|
+Bitwise OR
+a | b
+
+^
+Bitwise XOR
+a ^ b
+
+~
+Bitwise NOT
+~a
+
+<<
+Left Shift
+a << 1
+
+>>
+Right Shift
+a >> 1
+
+
+Example:
+int a = 5;     // 0b0101
+int b = 3;     // 0b0011
+int c = a & b; // 0b0001, result is 1
+Here are some examples of bitwise operators in Arduino code.
+1. AND (&)
+The & operator performs a bitwise AND. It returns 1 only if both corresponding bits are 1.
+Example:
+int a = 5;    // Binary: 0101
+int b = 3;    // Binary: 0011
+int result = a & b; // Binary: 0001 (Decimal: 1)
+Serial.println(result); // Output: 1
+2. OR (|)
+The | operator performs a bitwise OR. It returns 1 if at least one of the bits is 1.
+Example:
+int a = 5;    // Binary: 0101
+int b = 3;    // Binary: 0011
+int result = a | b; // Binary: 0111 (Decimal: 7)
+Serial.println(result); // Output: 7
+3. XOR (^)
+The ^ operator performs a bitwise XOR. It returns 1 if only one of the bits is 1.
+Example:
+int a = 5;    // Binary: 0101
+int b = 3;    // Binary: 0011
+int result = a ^ b; // Binary: 0110 (Decimal: 6)
+Serial.println(result); // Output: 6
+4. NOT (~)
+The ~ operator inverts each bit (flips 1 to 0 and vice versa).
+Example:
+int a = 5;    // Binary: 0101
+int result = ~a; // Binary: 1010 (Two’s complement for -6 in 8-bit)
+Serial.println(result); // Output: -6
+5. Left Shift (<<)
+The << operator shifts bits to the left by a specified number of positions, filling with 0s on the right.
+Example:
+int a = 5;    // Binary: 00000101
+int result = a << 1; // Binary: 00001010 (Decimal: 10)
+Serial.println(result); // Output: 10
+6. Right Shift (>>)
+The >> operator shifts bits to the right by a specified number of positions. For positive numbers, it fills the leftmost bits with 0s.
+Example:
+int a = 5;    // Binary: 00000101
+int result = a >> 1; // Binary: 00000010 (Decimal: 2)
+Serial.println(result); // Output: 2
+These examples should help you use bitwise operators in Arduino projects!
+7. Ternary Operator
+The ternary operator is a shorthand for if-else statements.
+variable = (condition) ? value_if_true : value_if_false;
+Example:
+int temperature = 28;
+String status = (temperature > 30) ? "Hot" : "Normal";
+Serial.println(status);  // Prints "Normal"
+Summary Example Using Multiple Operators:
+void setup() {
+    Serial.begin(9600);
+}
+void loop() {
+    int a = 10;
+    int b = 5;
+
+    // Arithmetic operators
+    int sum = a + b;
+    int product = a * b;
+
+    // Comparison and logical operators
+    if (a > b && b != 0) {
+        Serial.println("a is greater than b and b is not zero.");
+    }
+
+    // Bitwise and assignment operators
+    a |= b;  // Equivalent to a = a | b;
+
+    // Ternary operator
+    String result = (a == b) ? "a is equal to b" : "a is not equal to b";
+    Serial.println(result);
+    delay(1000); // Wait a second before repeating
+}
+These operators are crucial for controlling the logic and flow in your Arduino code, allowing for everything from basic calculations to complex conditions and bitwise operations. Let me know if you need further explanation on any specific operators!
+
+
+Conditions:
+In Arduino, you can use conditional statements to control the flow of your program based on certain conditions. Here’s an overview of the main types of conditionals you’ll encounter:
+
+1. if Statement
+The if statement checks a condition, and if it’s true, it executes the code inside the block.
+if (condition) {
+    // Code to execute if condition is true
+}
+Example:
+int sensorValue = analogRead(A0);
+if (sensorValue > 500) {
+    Serial.println("Sensor value is high!");
+}
+2. if-else Statement
+The if-else statement provides an alternative action if the condition is false.
+if (condition) {
+    // Code to execute if condition is true
+} 
+else {
+    // Code to execute if condition is false
+}
+Example:
+int temperature = 25;
+if (temperature > 30) {
+    Serial.println("It's hot!");
+} 
+else {
+    Serial.println("Temperature is normal.");
+}
+
+3. if-else if-else Statement
+The if-else if-else structure allows for multiple conditions to be checked in sequence.
+if (condition1) {
+    // Code to execute if condition1 is true
+} else if (condition2) {
+    // Code to execute if condition2 is true
+} else {
+    // Code to execute if none of the above conditions are true
+}
+
+Example:
+int lightLevel = analogRead(A0);
+if (lightLevel < 200) {
+    Serial.println("It's dark.");
+} else if (lightLevel >= 200 && lightLevel <= 800) {
+    Serial.println("It's moderate light.");
+} else {
+    Serial.println("It's bright.");
+}
+
+4. switch-case Statement
+The switch statement is a more organized way to handle multiple conditions based on a single variable.
+switch (variable) {
+    case value1:
+        // Code to execute if variable equals value1
+        break;
+    case value2:
+        // Code to execute if variable equals value2
+        break;
+    // Add more cases as needed
+    default:
+        // Code to execute if none of the cases are matched
+}
+
+Example:
+int buttonState = digitalRead(2);
+switch (buttonState) {
+    case HIGH:
+        Serial.println("Button is pressed.");
+        break;
+    case LOW:
+        Serial.println("Button is not pressed.");
+        break;
+}
+
+5. Ternary Operator
+The ternary operator is a shorthand way to write simple if-else conditions.
+variable = (condition) ? value_if_true : value_if_false;
+Example:
+int temperature = 28;
+String tempStatus = (temperature > 30) ? "Hot" : "Normal";
+Serial.println(tempStatus);
+
+Practical Example in Arduino Code:
+This example checks the temperature from a sensor and controls an LED based on the reading:
+
+void setup() {
+    Serial.begin(9600);
+    pinMode(LED_BUILTIN, OUTPUT);  // Initialize the LED pin
+}
+
+void loop() {
+    int tempSensorValue = analogRead(A0);
+    float temperature = (tempSensorValue / 1023.0) * 100; // Example conversion
+
+    if (temperature > 30) {
+        digitalWrite(LED_BUILTIN, HIGH);   // Turn on LED if temperature is high
+        Serial.println("Warning: High temperature!");
+    }
+    else if (temperature < 10) {
+        digitalWrite(LED_BUILTIN, LOW);    // Turn off LED if temperature is low
+        Serial.println("Temperature is too low.");
+    } 
+    else {
+        Serial.println("Temperature is normal.");
+    }
+    delay(1000);  // Delay for a second before checking again
+}
+
+Summary:
+These conditional statements allow you to control and respond to various conditions in your Arduino program. Whether it's based on sensor data, button presses, or other inputs, conditional statements make your program interactive and responsive.
+
+
+Loops
+In Arduino programming, loops are essential for controlling the flow of your program by repeating a set of instructions. Here’s an overview of the most common loops and how to use them in Arduino:
+
+1. The loop() Function
+In Arduino, the loop() function itself is a built-in loop that runs continuously after the setup() function has finished executing. It’s automatically called over and over again, which is why you don’t need a while loop to keep the program running.
+
+void setup() {
+  // Code here runs once
+  pinMode(LED_BUILTIN, OUTPUT);
+}
+void loop() {
+  // Code here runs continuously
+  digitalWrite(LED_BUILTIN, HIGH);
+  delay(1000);
+  digitalWrite(LED_BUILTIN, LOW);
+  delay(1000);
+}
+In this example, the built-in LED blinks on and off in a continuous loop.
+2. for Loop
+The for loop is used to repeat a block of code a specific number of times. It’s typically used when you know how many times you need the loop to execute.
+Syntax:
+for (initialization; condition; increment) {
+  // Code to execute in each iteration
+}
+Example:
+void setup() {
+  Serial.begin(9600);
+}
+void loop() {
+  for (int i = 0; i < 10; i++) {
+    Serial.println(i);
+    delay(500);
+  }
+  delay(2000);  // Wait before starting the loop again
+}
+This code will print the numbers 0 to 9 on the Serial Monitor, with a 500 ms delay between each number.
+3. while Loop
+A while loop runs as long as a specified condition is true. This loop is useful when the number of iterations isn’t known beforehand.
+Syntax:
+while (condition) {
+  // Code to execute while the condition is true
+}
+Example:
+void setup() {
+  Serial.begin(9600);
+}
+void loop() {
+  int sensorValue = analogRead(A0);
+  while (sensorValue < 500) {
+    Serial.println("Sensor reading is low");
+    delay(500);
+    sensorValue = analogRead(A0);  // Update the sensor value
+  }
+  Serial.println("Sensor reading is sufficient");
+  delay(1000);  // Delay before rechecking in the loop
+}
+In this example, the program checks if a sensor reading is below 500 and continues printing "Sensor reading is low" until the value reaches 500 or above.
+4. do...while Loop
+The do...while loop is similar to the while loop, but it will always execute at least once, even if the condition is false.
+Syntax:
+do {
+  // Code to execute
+} while (condition);
+
+Example:
+void setup() {
+  Serial.begin(9600);
+}
+void loop() {
+  int counter = 0;
+  do {
+    Serial.println("Counting: " + String(counter)); // + indicate concatenate, it convert integer into string.
+    counter++;
+    delay(500);
+  } while (counter < 5);
+  delay(2000);  // Wait before restarting the loop
+}
+In this example, "Counting: 0" through "Counting: 4" will print to the Serial Monitor, even if the initial counter value was greater than or equal to 5.
+
+5. break and continue Statements
+break: Exits a loop entirely when triggered.
+continue: Skips the current iteration and moves to the next iteration.
+Example with break and continue:
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  for (int i = 0; i < 10; i++) {
+    if (i == 3) {
+      continue;  // Skip the iteration when i is 3
+    }
+    if (i == 8) {
+      break;  // Exit the loop entirely when i is 8
+    }
+    Serial.println(i);
+    delay(300);
+  }
+  delay(2000);  // Wait before starting the loop again
+}
+
+In this example, 3 will be skipped, and the loop will stop entirely when i reaches 8.
+Each loop type has its purpose and best use cases in Arduino programming, depending on your project’s requirements. Let me know if you'd like more examples or details on specific loop types!
+
+
+Functions
+In Arduino programming, functions are blocks of code designed to perform a specific task. They help organize code, making it easier to read, reuse, and maintain. Here's an overview of how functions work in Arduino code:
+1. Function Structure
+A function generally has the following structure:
+returnType functionName(parameterType parameterName) {
+    // Code to execute
+    return value; // Optional, depending on return type
+}
+returnType: The type of value the function returns (e.g., int, void, float). If it doesn't return anything, use void.
+functionName: A unique name that identifies the function.
+parameters: Optional inputs that the function can take. They are defined by their type and name.
+function body: The code that runs when the function is called.
+
+2. Examples of Functions
+Basic Function Example
+Here's a simple example of a function that adds two numbers:
+int add(int a, int b) {
+    return a + b;
+}
+Using the Function
+You can call the function in your loop() or setup():
+void setup() {
+    Serial.begin(9600);
+    int sum = add(5, 3); // Calls the add function
+    Serial.println(sum); // Prints 8
+}
+void loop() {
+    // Empty loop
+}
+3. Built-in Functions
+Arduino has many built-in functions that perform specific tasks, such as:
+digitalWrite(pin, value): Sets a digital pin to HIGH or LOW.
+analogRead(pin): Reads the value from an analog pin.
+delay(milliseconds): Pauses the program for a specified amount of time.
+
+4. User-defined Functions
+You can create your own functions to encapsulate code that you will reuse throughout your program, improving modularity and readability. For example:
+
+void blinkLED(int pin) {
+    digitalWrite(pin, HIGH);
+    delay(1000);
+    digitalWrite(pin, LOW);
+    delay(1000);
+}
+void setup() {
+    pinMode(LED_BUILTIN, OUTPUT);
+}
+
+void loop() {
+    blinkLED(LED_BUILTIN); // Blink the built-in LED
+}
+5. Function Overloading
+Arduino supports function overloading, which allows you to define multiple functions with the same name but different parameters:
+void display(int number) {
+    Serial.println(number);
+}
+void display(float number) {
+    Serial.println(number, 2); // Print with 2 decimal places
+}
+6. Scope and Lifetime
+Local variables: Defined inside a function, only accessible within that function.
+Global variables: Defined outside any function, accessible throughout the program.
+
+
+Array and pointer
+In Arduino programming, arrays and pointers are essential for managing collections of data and directly manipulating memory. Here’s an overview of how to use arrays and pointers in Arduino code, along with examples.
+
+Arrays
+Arrays are used to store multiple values of the same data type in a single variable. They provide a convenient way to manage lists of related data.
+Declaring and Initializing Arrays
+You can declare an array by specifying its type and size. Here's an example:
+int sensorValues[5]; // Declare an array of integers with 5 elements
+You can also initialize an array at the time of declaration:
+int sensorValues[5] = {10, 20, 30, 40, 50}; // Initialize with values
+Accessing Array Elements
+Array elements are accessed using an index (starting from 0):
+void setup() {
+    Serial.begin(9600);
+    Serial.println(sensorValues[0]); // Prints 10
+    sensorValues[1] = 25; // Update the second element
+}
+
+Example: Using Arrays
+Here's a simple example that reads values from multiple anal
